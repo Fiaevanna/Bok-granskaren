@@ -1,0 +1,92 @@
+ .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 40%;
+    
+    
+}
+
+.imgHeader {
+    
+    height: 200px;
+    width: 200px;
+    margin-left: 30px;
+    
+}
+
+h1 {
+    font-weight:bolder;
+    font-size: 52px;
+    
+   
+    
+}
+
+
+.rightBar {
+display: flex;
+flex-direction: column;
+margin-left: auto;
+margin-right: 5%;
+margin-top: 5%;
+
+
+}
+.hederSpan {
+    font-size: large;
+    font-weight: 700;
+    
+    
+}
+
+span {
+    
+   display: flex;
+   flex-direction: column; 
+
+
+}
+
+a {
+    color: black;
+    font-size: large;
+    font-weight: 600;
+}
+
+
+.mainContainer {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    margin-top: 100px;
+    justify-content: space-evenly;
+    
+    
+}
+
+
+
+
+img {
+    display: flex;
+    align-items: center;
+    height: 150px;
+    width: 150px;
+    
+}
+
+.bookContent {
+    
+    width: 150px;
+    
+}
+
+ 
+
+
+button {
+    height: 30px;
+    width: 90px;
+    margin: auto;
+}
