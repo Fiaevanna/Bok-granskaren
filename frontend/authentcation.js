@@ -49,15 +49,21 @@ function isLoggedIn (){
 }
 console.log(isLoggedIn())
 
+// här är en funktion som ändrar header beroende på om man är in eller ut loggad
 function initHeader(){
+    // här använder jag min isLoggedIn funktion och sparar svaret i en variable (loggedIn)
     let loggedIn = isLoggedIn()
+
     let loggedInElem = document.getElementById("loggIn")
     let loggOutElem = document.getElementById("loggOut")
     let nav = document.getElementById("nav");
     let userEmail = document.getElementById("userEmail");
+
+    // om användare är in loggade så vill man bara gömma logga in knappen
     if (loggedIn) {
         loggedInElem.style.display = "none";
-    }else {
+    } else {
+        // om man är utloggad så vill man gömma logga ut, mina sidor och email från header
         loggOutElem.style.display = "none";
         nav.style.display = "none";
         userEmail.style.display = "none";
@@ -68,7 +74,7 @@ initHeader()
 
 
 
-
+// här är en funktion som tar bort nyckeln "user" och dens värde ifrån localstorage och laddar om sidan
 function loggOut () {
     localStorage.removeItem("user");
     location.reload() 
