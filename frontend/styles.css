@@ -22,6 +22,13 @@ h1 {
    
     
 }
+.myPageText {
+    font-weight:bold;
+    font-size: 40px;
+    max-width: 1000px;
+    margin: 0;
+    
+}
 
 
 .rightBar {
@@ -32,6 +39,10 @@ margin-right: 5%;
 margin-top: 5%;
 
 
+}
+
+a {
+    text-decoration: none;
 }
 .hederSpan {
     font-size: large;
@@ -54,14 +65,19 @@ a {
     font-weight: 600;
 }
 
+.mainWrapper {
+    margin: auto;
+    margin-top: 100px;
+    max-width: 1000px;
+}
+
 
 .mainContainer {
     display: flex;
     flex-direction: row;
-    margin: auto;
-    margin-top: 100px;
     justify-content: space-evenly;
-    
+    flex-wrap: wrap;
+    padding-bottom: 40px;
     
 }
 
@@ -77,16 +93,101 @@ img {
 }
 
 .bookContent {
-    
+    display: flex;
+    flex-direction: column;
     width: 150px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 40px;
+    background-color:hsl(0, 0%, 96%);
+    padding-bottom: 20px;
+}
+
+.bookContent h3 {
+    height: 60px;
+
+}
+
+.bookContent img {
+    margin-bottom: 15px;
+}
+
+.title {
+    font-weight: bolder;
     
 }
 
+.content {
+    
+    height: 30px;
+}
+
+.aReg {
+    font-weight: 100;
+    margin-top: 10px;
+    text-decoration: underline; 
+    color: blue;
+    opacity: 70%;
+}
  
 
 
 button {
     height: 30px;
     width: 90px;
-    margin: auto;
+    margin-top: 20px;
+    
 }
+.saveBtn {
+    background-color: white;
+    border: 1px solid black; 
+    width: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+/* Loggin sida */ 
+
+.centerBox {
+    display: flex;
+    justify-content: center;
+    height: calc(100vh - 200px);
+    align-items: center;
+    width: 100%;
+    
+}
+.mainLogInDiv {
+    background-color: hsl(0, 0%, 96%);
+    width: 578px;
+    height: 525px;
+    border-radius: 59px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+input {
+width: 500px;
+height: 40px;
+padding-left: 10px;
+margin-bottom: 30px;    
+border-radius: 30px;
+border: 1px solid rgb(207, 203, 203);
+
+}
+
+.logInBtn {
+    width: 173px;
+    height: 38px;
+    border-radius: 90px;
+    background-color: hsl(0, 3%, 88%);
+    border: 1px solid rgb(207, 203, 203);
+    font-size: 20px;
+    
+    
+}
+
