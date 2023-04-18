@@ -37,3 +37,39 @@ async function loggIn() {
   }
 }
 
+// hämtar user och token data från lockalStorage och sparar det i en variabel (userFromLocalStorage) sen förvandlar jag tillbaka den till ett javaScript object 
+// pågrund av att lockalstorag sparar bara strings 
+function isLoggedIn (){
+    let userFromLocalStorage = localStorage.getItem("user");
+    let user = JSON.parse(userFromLocalStorage);
+    if (user && user.jwt) {
+        return true
+    } 
+    return false
+}
+console.log(isLoggedIn())
+
+function initHeader(){
+    let loggedIn = isLoggedIn()
+    let loggedInElem = document.getElementById("loggIn")
+    let loggOutElem = document.getElementById("loggOut")
+    let nav = document.getElementById("nav");
+    let userEmail = document.getElementById("userEmail");
+    if (loggedIn) {
+        loggedInElem.style.display = "none";
+    }else {
+        loggOutElem.style.display = "none";
+        nav.style.display = "none";
+        userEmail.style.display = "none";
+    }
+}
+
+initHeader()
+
+
+
+
+function loggOut () {
+    localStorage.removeItem("user");
+    location.reload() 
+}

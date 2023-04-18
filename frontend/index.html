@@ -17,11 +17,12 @@
       />
 
       <div class="rightBar">
-        <a href="logIn.html" class="hederSpan">Logga ut</a>
-        <nav>
+        <a onclick="loggOut()" id="loggOut" class="hederSpan">Logga ut</a>
+        <a href="logIn.html" id="loggIn" class="hederSpan">Logga in</a>
+        <nav id="nav">
           <a href="myPage.html">Mina sidor</a>
         </nav>
-        <span>fiaevanna@gmail.com</span>
+        <span id="userEmail">fiaevanna@gmail.com</span>
       </div>
     </div>
     <!--------------------------- Book content ------------------------------------>
@@ -34,6 +35,6 @@
     </div>
 
     <script src="index.js"></script>
-   
+    <script src="authentcation.js"></script>
   </body>
 </html>
