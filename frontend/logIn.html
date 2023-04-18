@@ -33,18 +33,19 @@
       <div class="mainLogInDiv">
         <div class="placeholder">
           <span>Email:</span>
-          <input placeholder="Email" type="text" />
+          <input  id="email" placeholder="Email" type="text" />
         </div>
 
         <div class="placeholder">
           <span>Lösenord:</span>
-          <input placeholder="Lösenord" type="password" />
+          <input  placeholder="Lösenord" id="password" type="password" />
         </div>
-        <button class="logInBtn">Logga in</button>
+        <button onclick="loggIn()" class="logInBtn">Logga in</button>
         <a class="aReg" href="register.html">Registrera dig här</a>
       </div>
     </div>
 
-    <script src="index.js"></script>
+    
+    <script src="authentcation.js"></script>
   </body>
 </html>
