@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "books",
+  "info": {
+    "singularName": "book",
+    "pluralName": "books",
+    "displayName": "Book"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Titel": {
+      "type": "text",
+      "required": true
+    },
+    "Author": {
+      "type": "text",
+      "required": true
+    },
+    "Published": {
+      "type": "date",
+      "required": true
+    },
+    "Pages": {
+      "type": "integer",
+      "required": true
+    },
+    "Image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "ratings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::rating.rating",
+      "mappedBy": "book"
+    },
+    "saved_books": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::saved-book.saved-book",
+      "mappedBy": "book"
+    }
+  }
+}
