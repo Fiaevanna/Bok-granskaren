@@ -31,7 +31,6 @@ function bookCanBeRated(ratings, bookId) {
     return book.attributes.book.data.id === bookId;
   });
 
-
   if (ratedBook) {
     return ratedBook.attributes.Rating;
   }
@@ -69,8 +68,42 @@ getAndCreateSavedBooks();
 
 // saverating tar emot ett id letar upp rätt select för att hämta rätt ratig som jag kommer koppla till strapi
 
-function saveRating(id) {
-  let ratingSelectElem = document.getElementById(`${id}-rating`);
+async function saveRating(bookId) {
+  let ratingSelectElem = document.getElementById(`${bookId}-rating`);
   let rating = ratingSelectElem.value;
-  console.log(rating, id);
+
+  let userFromLocalStorage = localStorage.getItem("user");
+  let user = JSON.parse(userFromLocalStorage);
+
+  if (!user) {
+    return;
+  }
+
+  await fetch("http://localhost:1337/api/ratings", {
+    method: "POST",
+    //det jag skickar med i body är ett json object alltså "application/json"
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${user.jwt}`,
+    },
+    body: JSON.stringify({
+      data: {
+        Rating: Number(rating),
+        user: user.user.id,
+        book: bookId,
+      },
+    }),
+  });
+
+  alert("Boken är betygsatt!");
+  location.reload();
 }
+
+function checkIfLoggedIn() {
+  const loggedIn = isLoggedIn();
+  if (!loggedIn) {
+    window.location.replace("/frontend/index.html");
+  }
+}
+
+checkIfLoggedIn()
