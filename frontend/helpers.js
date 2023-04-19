@@ -43,4 +43,33 @@ async function getSavedBooks() {
     return mySavedBooks;
   }
 
+
+  async function getMyRatings() {
+    let userFromLocalStorage = localStorage.getItem("user");
+    let user = JSON.parse(userFromLocalStorage);
+  
+    if (!user) {
+      return;
+    }
+    let response = await fetch(
+      "http://localhost:1337/api/ratings?populate=user&populate=book",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.jwt}`,
+        },
+      }
+    );
+    let data = await response.json();
+    let books = data.data;
+  
+    const myRatedBooks = books.filter((book) => {
+      if (book.attributes.user.data.id === user.user.id) {
+        return book;
+      }
+    });
+  
+    return myRatedBooks;
+  }
+
 //lägger funktioner i en ny fil appropå att jag behöver de på fler ställen 

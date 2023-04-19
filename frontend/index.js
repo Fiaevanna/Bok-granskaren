@@ -22,7 +22,7 @@ async function saveBook(bookId) {
     return;
   }
 
-  let response = await fetch("http://localhost:1337/api/saved-books", {
+  await fetch("http://localhost:1337/api/saved-books", {
     method: "POST",
     //det jag skickar med i body är ett json object alltså "application/json"
     headers: {

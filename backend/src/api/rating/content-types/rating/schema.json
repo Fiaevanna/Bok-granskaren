@@ -21,7 +21,7 @@
       "target": "api::book.book",
       "inversedBy": "ratings"
     },
-    "users_permissions_user": {
+    "user": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",

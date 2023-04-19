@@ -16,7 +16,7 @@ function createBookMyPage(
 
   // Change input to be object instead of normal way
   const bookElement = document.createElement("div");
-  if (rating) {
+  if (typeof rating === "number") {
     bookElement.innerHTML = `<div class="bookContent"> <h3>${title}</h3> <img src="${image}" /> <div class="infoRow"> <span class="title">Omdömme:</span> <span class="content">${ratingText}</span> </div> <div class="infoRow"> <span class="title">Författare:</span> <span class="content">${author}</span> </div> <div class="infoRow"> <span class="title">Utgiven:</span> <span class="content">${published}</span> </div> <div class="infoRow"> <span class="title">Antal sidor:</span> <span class="content">${pages}</span> </div> <select disabled name="rating" id="rating"> <option value="">${rating}</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> <option value="5">5</option> <option value="6">6</option> <option value="7">7</option> <option value="8">8</option> <option value="9">9</option> <option value="10">10</option> </select> <button disabled class="saveBtn">Spara omdömme</button></div> `;
   } else {
     bookElement.innerHTML = `<div class="bookContent"> <h3>${title}</h3> <img src="${image}" /> <div class="infoRow"> <span class="title">Omdömme:</span> <span class="content">${ratingText}</span> </div> <div class="infoRow"> <span class="title">Författare:</span> <span class="content">${author}</span> </div> <div class="infoRow"> <span class="title">Utgiven:</span> <span class="content">${published}</span> </div> <div class="infoRow"> <span class="title">Antal sidor:</span> <span class="content">${pages}</span> </div> <select name="rating" id="${id}-rating"> <option value=""> Ge omdömme </option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> <option value="5">5</option> <option value="6">6</option> <option value="7">7</option> <option value="8">8</option> <option value="9">9</option> <option value="10">10</option> </select> <button onclick="saveRating(${id})" class="saveBtn">Spara omdömme</button></div>`;
@@ -26,10 +26,22 @@ function createBookMyPage(
   mainContainer.appendChild(bookElement);
 }
 
+function bookCanBeRated(ratings, bookId) {
+  const ratedBook = ratings.find((book) => {
+    return book.attributes.book.data.id === bookId;
+  });
 
+
+  if (ratedBook) {
+    return ratedBook.attributes.Rating;
+  }
+
+  return true;
+}
 
 async function getAndCreateSavedBooks() {
   const books = await getSavedBooks();
+  const myRatings = await getMyRatings();
 
   books.forEach((book) => {
     const ratingsObjects = book.attributes.book.data.attributes.ratings.data;
@@ -37,6 +49,8 @@ async function getAndCreateSavedBooks() {
       return rating.attributes.Rating;
     });
     let rating = avarageRating(ratings);
+
+    const myRating = bookCanBeRated(myRatings, book.attributes.book.data.id);
 
     createBookMyPage(
       book.attributes.book.data.attributes.Titel,
@@ -46,7 +60,7 @@ async function getAndCreateSavedBooks() {
       book.attributes.book.data.attributes.Author,
       book.attributes.book.data.attributes.Published,
       book.attributes.book.data.attributes.Pages,
-      undefined,
+      myRating,
       book.attributes.book.data.id
     );
   });
