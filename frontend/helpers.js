@@ -15,4 +15,32 @@ function avarageRating (ratingArr){
     return Math.round(avarage);
 }
 
-//lägger in denna funktion i en ny fil appropå att jag behöver den på fler ställen 
+async function getSavedBooks() {
+    let userFromLocalStorage = localStorage.getItem("user");
+    let user = JSON.parse(userFromLocalStorage);
+  
+    if (!user) {
+      return;
+    }
+    let response = await fetch(
+      "http://localhost:1337/api/saved-books?populate[book][populate][0]=Image&populate[book][populate][1]=ratings&populate=user",
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.jwt}`,
+        },
+      }
+    );
+    let data = await response.json();
+    let books = data.data;
+  
+    const mySavedBooks = books.filter((book) => {
+      if (book.attributes.user.data.id === user.user.id) {
+        return book;
+      }
+    });
+  
+    return mySavedBooks;
+  }
+
+//lägger funktioner i en ny fil appropå att jag behöver de på fler ställen 

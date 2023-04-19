@@ -4,7 +4,8 @@
   "info": {
     "singularName": "saved-book",
     "pluralName": "saved-books",
-    "displayName": "SavedBook"
+    "displayName": "SavedBook",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -17,7 +18,7 @@
       "target": "api::book.book",
       "inversedBy": "saved_books"
     },
-    "users_permissions_user": {
+    "user": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",

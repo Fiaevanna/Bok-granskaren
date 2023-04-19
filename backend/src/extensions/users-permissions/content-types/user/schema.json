@@ -76,7 +76,7 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::saved-book.saved-book",
-      "mappedBy": "users_permissions_user"
+      "mappedBy": "user"
     }
   }
 }
